@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Random Number Generator & Coin Flip</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: #fff;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        input, button {
+            padding: 15px;
+            margin: 10px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            transition: transform 0.2s;
+        }
+        input {
+            width: 200px;
+            border: 2px solid #fff;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 2rem;
+            color: #ffeb3b;
+            animation: bounce 0.5s infinite alternate;
+            display: none;
+        }
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <h1>🎲 Fun Random Number Generator & Coin Flip 🎲</h1>
+    <input type="number" id="maxValue" placeholder="Enter max value" min="0">
+    <button onclick="generateRandomNumber()">Generate Random Number</button>
+    <button onclick="flipCoin()">Flip Coin</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        function generateRandomNumber() {
+            const max = parseInt(document.getElementById('maxValue').value);
+            const resultDiv = document.getElementById('result');
+            if (isNaN(max) || max < 0) {
+                alert('Please enter a valid maximum value (0 or greater).');
+                resultDiv.style.display = 'none';
+                return;
+            }
+            const randomNumber = Math.floor(Math.random() * (max + 1));
+            resultDiv.textContent = `🎉 Random Number: ${randomNumber} 🎉`;
+            resultDiv.style.display = 'block';
+        }
+
+        function flipCoin() {
+            const resultDiv = document.getElementById('result');
+            const coinFlip = Math.random() < 0.5 ? 'Heads' : 'Tails';
+            resultDiv.textContent = `🪙 Coin Flip: ${coinFlip} 🪙`;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
